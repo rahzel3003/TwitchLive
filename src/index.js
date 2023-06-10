@@ -1,4 +1,5 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
+
 const { Client, IntentsBitField, EmbedBuilder } = require('discord.js');
 const Discord = require('discord.js');
 const TwitchAPI = require('twitch-api');
@@ -35,7 +36,7 @@ client.on('interactionCreate', async (interaction) => {
     const channel = interaction.options.getChannel('channel');
     const channelID = channel.id;
 
-    const filePath = 'channelData.json';
+    const filePath = '../channelData.json';
     let channelData = {};
 
     if (fs.existsSync(filePath)) {
@@ -63,7 +64,7 @@ client.on('interactionCreate', async (interaction) => {
 
     // URL is valid, perform further actions
 
-    const filePath = 'channelData.json';
+    const filePath = '../channelData.json';
     let channelData = {};
 
     if (fs.existsSync(filePath)) {
@@ -85,7 +86,7 @@ let isChannelOnline = false;
 
 setInterval(async () => {
   const stream = await checkTwitchChannelStatus();
-  const channelDataPath = 'channelData.json';
+  const channelDataPath = '../channelData.json';
   const channelData = JSON.parse(fs.readFileSync(channelDataPath, 'utf-8'));
 
   const channelId = channelData.channelID;

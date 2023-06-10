@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const { getTwitchAccessToken } = require('@jlengstorf/get-twitch-oauth');
 const fetch = require('node-fetch');
 const fs = require('fs');
@@ -6,7 +6,7 @@ const fs = require('fs');
 async function checkTwitchChannelStatus() {
   const { access_token } = await getTwitchAccessToken();
 
-  const filePath = 'channelData.json';
+  const filePath = '../channelData.json';
   let channelData = {};
 
   if (fs.existsSync(filePath)) {
