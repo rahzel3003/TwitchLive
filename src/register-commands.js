@@ -1,5 +1,7 @@
+require('dotenv').config({ path: '../.env' });
+
 const { REST, Routes } = require('discord.js');
-require('dotenv').config();
+const path = require('path');
 
 const commands = [
   {
@@ -34,7 +36,10 @@ async function registerSlashCommands() {
   try {
     console.log('Registering slash commands.');
 
-    await rest.put(Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID), { body: commands });
+    await rest.put(
+      Routes.applicationGuildCommands(process.env.CLIENTID, process.env.GUILDID),
+      { body: commands }
+    );
 
     console.log('Slash commands have been registered.');
   } catch (error) {

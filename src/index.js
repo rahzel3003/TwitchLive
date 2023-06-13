@@ -113,8 +113,6 @@ setInterval(async () => {
       console.log('Sending message to channel:', channel.name);
 
       const twitchURL = channelData.twitchURL;
-      const announcementMessage = `@everyone ${stream.user_name} is now live on Twitch.tv.`;
-
 
       const embed = new Discord.EmbedBuilder()
         .setTitle(user_name)
@@ -127,9 +125,10 @@ setInterval(async () => {
         .setImage(thumbnail_url.replace('{width}', '1280').replace('{height}', '720'))
         .setTimestamp();
 
+      const message = `@everyone ${user_name} is now live on Twitch!\n`;
+
       channel
-        .send({announcementMessage})
-        .send({ embeds: [embed] })
+        .send({ content: message, embeds: [embed] })
         .then(() => console.log('Message sent successfully.'))
         .catch((error) => console.error('Error sending message:', error));
     } else {
